@@ -2,41 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* CodeCraft Design System - Low-code/No-code Marketplace Platform */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Base Colors */
+    --background: 240 10% 97%; /* #f8fafc */
+    --foreground: 222 84% 5%;
+    
+    /* Brand Colors */
+    --primary: 249 46% 60%; /* #6366f1 - Indigo */
+    --primary-foreground: 0 0% 98%;
+    --primary-hover: 249 46% 55%;
+    
+    --secondary: 254 44% 65%; /* #8b5cf6 - Purple */
+    --secondary-foreground: 0 0% 98%;
+    --secondary-hover: 254 44% 60%;
+    
+    /* Status Colors */
+    --success: 142 77% 40%; /* #10b981 - Green "disponível" */
+    --success-foreground: 0 0% 98%;
+    --success-light: 142 77% 95%;
+    
+    --warning: 38 92% 50%; /* #f59e0b - Orange "urgente" */
+    --warning-foreground: 0 0% 98%;
+    --warning-light: 38 92% 95%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Surface Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 222 84% 5%;
+    --card-hover: 240 10% 99%;
+    
+    --muted: 220 13% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 220 13% 96%;
+    --accent-foreground: 222 47% 11%;
+    
+    /* Interactive */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 249 46% 60%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: 222 84% 5%;
+    
+    /* Design System */
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(142 77% 50%));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted)));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(var(--foreground) / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(var(--foreground) / 0.1), 0 2px 4px -1px hsl(var(--foreground) / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(var(--foreground) / 0.1), 0 4px 6px -2px hsl(var(--foreground) / 0.05);
+    --shadow-primary: 0 10px 25px -5px hsl(var(--primary) / 0.3);
+    
+    /* Typography */
+    --font-heading: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +131,82 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Status Badges */
+  .status-available {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/10 text-success;
+  }
+  
+  .status-urgent {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/10 text-warning;
+  }
+  
+  .status-busy {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-destructive/10 text-destructive;
+  }
+  
+  /* Card Animations */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:-translate-y-1;
+  }
+  
+  .card-project {
+    @apply bg-card border border-border rounded-lg p-6 card-hover;
+  }
+  
+  .card-freelancer {
+    @apply bg-card border border-border rounded-lg p-6 card-hover bg-gradient-to-br from-card to-card-hover;
+  }
+  
+  /* Gradients */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+  
+  /* Custom Buttons */
+  .btn-hero {
+    @apply bg-primary hover:bg-primary-hover text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-primary hover:shadow-lg hover:scale-105;
+  }
+  
+  .btn-secondary-hero {
+    @apply bg-secondary hover:bg-secondary-hover text-secondary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-200 hover:shadow-lg hover:scale-105;
+  }
+  
+  .btn-outline-hero {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-200 hover:shadow-lg hover:scale-105;
+  }
+  
+  /* Text Utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }
