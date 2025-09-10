@@ -23,17 +23,17 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">
+            <a href="/" className="text-foreground hover:text-primary font-medium transition-colors">
               Explorar
             </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">
-              Freelancers
+            <a href="/dashboard" className="text-foreground hover:text-primary font-medium transition-colors">
+              Dashboard
             </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">
-              Projetos
+            <a href="/post-job" className="text-foreground hover:text-primary font-medium transition-colors">
+              Postar Trabalho
             </a>
-            <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">
-              Como Funciona
+            <a href="/profile" className="text-foreground hover:text-primary font-medium transition-colors">
+              Meu Perfil
             </a>
           </nav>
 
@@ -92,17 +92,17 @@ const Header = () => {
               
               {/* Mobile Navigation */}
               <nav className="flex flex-col space-y-2">
-                <a href="#" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
+                <a href="/" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
                   Explorar
                 </a>
-                <a href="#" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
-                  Freelancers
+                <a href="/dashboard" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
+                  Dashboard
                 </a>
-                <a href="#" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
-                  Projetos
+                <a href="/post-job" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
+                  Postar Trabalho
                 </a>
-                <a href="#" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
-                  Como Funciona
+                <a href="/profile" className="text-foreground hover:text-primary font-medium py-2 transition-colors">
+                  Meu Perfil
                 </a>
               </nav>
               
