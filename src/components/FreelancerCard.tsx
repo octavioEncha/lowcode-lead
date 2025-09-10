@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Star, MapPin, Clock, User, MessageCircle, Heart } from "lucide-react";
+import { Star, MapPin, User } from "lucide-react";
 
 interface FreelancerCardProps {
   name: string;
@@ -30,10 +30,8 @@ const FreelancerCard = ({
   reviewCount,
   hourlyRate,
   availability,
-  responseTime,
   skills,
   completedProjects,
-  languages,
   description,
   isTopRated = false,
   isOnline = false,
@@ -51,122 +49,81 @@ const FreelancerCard = ({
     }
   };
 
-  const availabilityStatus = getAvailabilityStatus();
+  const status = getAvailabilityStatus();
 
   return (
-    <div className="card-freelancer group">
-      {/* Header */}
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-start space-x-4">
+    <div className="card-freelancer">
+      <div className="space-y-4">
+        {/* Header */}
+        <div className="flex items-start space-x-3">
           <div className="relative">
-            <Avatar className="h-16 w-16">
+            <Avatar className="w-12 h-12">
               <AvatarImage src={avatar} alt={name} />
-              <AvatarFallback className="text-lg font-semibold">
-                <User className="h-8 w-8" />
+              <AvatarFallback>
+                <User className="w-6 h-6" />
               </AvatarFallback>
             </Avatar>
             {isOnline && (
-              <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-success border-2 border-white rounded-full"></div>
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-success rounded-full border-2 border-white" />
             )}
           </div>
           
           <div className="flex-1 min-w-0">
-            <div className="flex items-center space-x-2 mb-1">
-              <h3 className="font-heading font-semibold text-lg text-foreground truncate">
-                {name}
-              </h3>
+            <div className="flex items-center space-x-2">
+              <h3 className="font-semibold text-foreground truncate">{name}</h3>
               {isTopRated && (
-                <Badge className="bg-warning/10 text-warning text-xs">
-                  Top Rated
+                <Badge variant="outline" className="text-xs border-warning text-warning">
+                  Top
                 </Badge>
               )}
             </div>
-            
-            <p className="text-sm text-muted-foreground mb-2 line-clamp-1">
-              {title}
-            </p>
-            
-            <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-              <div className="flex items-center space-x-1">
-                <MapPin className="h-3 w-3" />
-                <span>{location}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Clock className="h-3 w-3" />
-                <span>Responde em {responseTime}</span>
-              </div>
+            <p className="text-sm text-muted-foreground line-clamp-2">{title}</p>
+            <div className="flex items-center space-x-1 mt-1">
+              <MapPin className="w-3 h-3 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">{location}</span>
             </div>
           </div>
         </div>
 
-        <Button size="icon" variant="ghost" className="opacity-0 group-hover:opacity-100 transition-opacity">
-          <Heart className="h-4 w-4" />
-        </Button>
-      </div>
-
-      {/* Rating and Pricing */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-2">
+        {/* Rating & Rate */}
+        <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">
-            <Star className="h-4 w-4 text-warning fill-current" />
-            <span className="font-semibold text-foreground">{rating}</span>
-            <span className="text-sm text-muted-foreground">({reviewCount})</span>
+            <Star className="w-4 h-4 text-warning fill-current" />
+            <span className="text-sm font-medium">{rating}</span>
+            <span className="text-xs text-muted-foreground">({reviewCount})</span>
           </div>
-          <span className="text-muted-foreground">•</span>
-          <span className="text-sm text-muted-foreground">{completedProjects} projetos</span>
-        </div>
-        
-        <div className="text-right">
-          <div className="font-semibold text-foreground">{hourlyRate}</div>
-          <div className={availabilityStatus.className}>
-            {availabilityStatus.text}
+          
+          <div className="text-right">
+            <p className="text-sm font-semibold text-primary">{hourlyRate}</p>
+            <Badge className={`text-xs ${status.className}`}>
+              {status.text}
+            </Badge>
           </div>
         </div>
-      </div>
 
-      {/* Description */}
-      <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-        {description}
-      </p>
+        {/* Description */}
+        <p className="text-sm text-muted-foreground line-clamp-3">
+          {description}
+        </p>
 
-      {/* Skills */}
-      <div className="mb-4">
-        <div className="flex flex-wrap gap-2">
-          {skills.slice(0, 4).map((skill, index) => (
-            <Badge key={index} variant="outline" className="text-xs">
+        {/* Skills */}
+        <div className="flex flex-wrap gap-1">
+          {skills.slice(0, 3).map((skill) => (
+            <Badge key={skill} variant="secondary" className="text-xs">
               {skill}
             </Badge>
           ))}
-          {skills.length > 4 && (
-            <Badge variant="outline" className="text-xs">
-              +{skills.length - 4}
+          {skills.length > 3 && (
+            <Badge variant="secondary" className="text-xs">
+              +{skills.length - 3}
             </Badge>
           )}
         </div>
-      </div>
 
-      {/* Languages */}
-      <div className="mb-6">
-        <div className="text-xs text-muted-foreground mb-1">Idiomas:</div>
-        <div className="text-sm text-foreground">
-          {languages.join(', ')}
-        </div>
-      </div>
-
-      {/* Actions */}
-      <div className="flex space-x-2 pt-4 border-t border-border">
+        {/* Action */}
         <Button 
-          variant="outline" 
-          size="sm" 
-          className="flex-1 flex items-center space-x-2"
-        >
-          <MessageCircle className="h-4 w-4" />
-          <span>Conversar</span>
-        </Button>
-        
-        <Button 
-          size="sm" 
-          className="flex-1 bg-primary hover:bg-primary-hover text-primary-foreground"
+          className="w-full btn-primary" 
+          size="sm"
           disabled={availability === 'unavailable'}
         >
           {availability === 'available' ? 'Contratar' : 'Ver Perfil'}

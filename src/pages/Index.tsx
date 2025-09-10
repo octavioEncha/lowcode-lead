@@ -10,7 +10,6 @@ const Index = () => {
       <main>
         <HeroSection />
         <Feed />
-        <FeaturesSection />
       </main>
     </div>
   );

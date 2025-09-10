@@ -151,19 +151,19 @@ const Feed = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <FeedToggle activeView={activeView} onViewChange={setActiveView} />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-12">
         {activeView === 'projects' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockProjects.map((project, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {mockProjects.slice(0, 4).map((project, index) => (
               <ProjectCard key={index} {...project} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockFreelancers.map((freelancer, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {mockFreelancers.slice(0, 4).map((freelancer, index) => (
               <FreelancerCard key={index} {...freelancer} />
             ))}
           </div>
