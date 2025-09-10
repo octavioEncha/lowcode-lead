@@ -57,9 +57,9 @@ const Header = () => {
               </span>
             </Button>
             
-            <Button variant="outline" className="font-medium">
+            <a href="/entrar" className="text-foreground hover:text-primary font-medium transition-colors">
               Entrar
-            </Button>
+            </a>
             
             <Button className="btn-hero">
               Cadastrar
@@ -109,10 +109,11 @@ const Header = () => {
               {/* Mobile Actions */}
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
                 <Button variant="outline" className="font-medium w-full">
-                  Entrar
+                  Entraraaaaa
                 </Button>
+               
                 <Button className="btn-hero w-full">
-                  Cadastrar
+                  Cadastraraa
                 </Button>
               </div>
             </div>
